@@ -1,0 +1,189 @@
+WEBVTT
+
+1
+00:00:00.900 --> 00:00:03.800
+Qué válvulas tienes instaladas en tu planta y dónde
+
+2
+00:00:03.820 --> 00:00:05.460
+está cada una.
+
+3
+00:00:05.480 --> 00:00:08.780
+Hoy esa respuesta está dibujada en tus P&ID,
+
+4
+00:00:08.800 --> 00:00:12.220
+los diagramas de tuberías e instrumentación y están guardados
+
+5
+00:00:12.240 --> 00:00:16.210
+como imágenes o PDFs que nadie puede consultar.
+
+6
+00:00:17.060 --> 00:00:19.220
+En cada uno están las tuberías,
+
+7
+00:00:19.240 --> 00:00:22.060
+las válvulas, las bombas y los instrumentos de la
+
+8
+00:00:22.080 --> 00:00:23.970
+planta con su etiqueta.
+
+9
+00:00:24.280 --> 00:00:27.720
+La IA mira ese dibujo y convierte cada símbolo
+
+10
+00:00:27.740 --> 00:00:29.540
+en una fila de datos.
+
+11
+00:00:29.690 --> 00:00:31.770
+Esta válvula, esta bomba,
+
+12
+00:00:31.790 --> 00:00:34.790
+este sensor, cada uno pasa a ser un registro
+
+13
+00:00:34.810 --> 00:00:36.610
+con su etiqueta.
+
+14
+00:00:37.030 --> 00:00:39.630
+Piensa en un plano de carreteras en papel frente
+
+15
+00:00:39.650 --> 00:00:41.520
+a un mapa con buscador.
+
+16
+00:00:41.850 --> 00:00:43.590
+Las calles son las mismas,
+
+17
+00:00:43.610 --> 00:00:45.990
+pero en el mapa escribes lo que buscas y
+
+18
+00:00:46.010 --> 00:00:47.810
+te lleva hasta allí.
+
+19
+00:00:48.230 --> 00:00:50.970
+En Snowflake empiezas subiendo los planos,
+
+20
+00:00:50.990 --> 00:00:52.710
+en imagen o en PDF,
+
+21
+00:00:52.730 --> 00:00:55.610
+a un stage, una carpeta de archivos dentro de
+
+22
+00:00:55.630 --> 00:00:56.950
+Snowflake.
+
+23
+00:00:56.970 --> 00:00:59.020
+Con una consulta SQL,
+
+24
+00:00:59.170 --> 00:01:02.730
+la función AI_COMPLETE lee cada plano y te devuelve
+
+25
+00:01:02.750 --> 00:01:04.680
+la lista de sus componentes.
+
+26
+00:01:04.910 --> 00:01:07.050
+Y no hace falta ir plano a plano.
+
+27
+00:01:07.070 --> 00:01:09.800
+Una sola consulta los procesa todos.
+
+28
+00:01:10.800 --> 00:01:14.770
+Después, cruzas esos componentes con tu lista de materiales.
+
+29
+00:01:14.980 --> 00:01:18.040
+Lo que coincide queda confirmado y lo que aparece
+
+30
+00:01:18.060 --> 00:01:20.320
+en el plano, pero no en la lista o,
+
+31
+00:01:20.340 --> 00:01:22.430
+al revés, salta a la vista.
+
+32
+00:01:23.430 --> 00:01:26.450
+Luego, un ingeniero revisa el resultado en una app
+
+33
+00:01:26.470 --> 00:01:29.390
+de Streamlit y corrige la etiqueta que la IA
+
+34
+00:01:29.410 --> 00:01:31.030
+ha leído mal.
+
+35
+00:01:31.050 --> 00:01:34.450
+Cada corrección sirve para que el reconocimiento mejore en
+
+36
+00:01:34.470 --> 00:01:36.270
+los siguientes planos.
+
+37
+00:01:36.950 --> 00:01:38.570
+Con los datos ya validados,
+
+38
+00:01:38.590 --> 00:01:41.860
+le preguntas a Cortex Analyst en lenguaje natural.
+
+39
+00:01:42.130 --> 00:01:45.260
+¿Cuántas válvulas de este tipo hay en la planta?
+
+40
+00:01:45.660 --> 00:01:47.740
+Y la respuesta sale de los datos que tu
+
+41
+00:01:47.760 --> 00:01:49.560
+equipo ha revisado.
+
+42
+00:01:50.200 --> 00:01:53.810
+Quizá estés pensando que esto sustituye al ingeniero.
+
+43
+00:01:54.140 --> 00:01:57.500
+No, la IA propone las etiquetas,
+
+44
+00:01:57.520 --> 00:02:00.370
+pero quien decide sigue siendo el ingeniero.
+
+45
+00:02:01.320 --> 00:02:04.600
+La IA de Snowflake lee tus P&ID,
+
+46
+00:02:04.620 --> 00:02:07.120
+tu equipo valida lo que encuentra y lo que
+
+47
+00:02:07.140 --> 00:02:10.190
+hay en tu planta por fin se puede consultar.

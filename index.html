@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casos de uso de IA con Snowflake · Vídeos</title>
+<meta name="description" content="Vídeos cortos que explican casos de uso de IA para el negocio construidos con Snowflake.">
+<style>
+  :root { color-scheme: dark; --bg: #0b1f33; --card: #11314f; --ink: #e8f1f8; --muted: #9fb3c8; --accent: #29b5e8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, system-ui, "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  header { padding: clamp(28px, 6vw, 56px) clamp(16px, 5vw, 48px) 24px; background: radial-gradient(1200px 400px at 10% 0%, #164a73 0%, var(--bg) 70%); }
+  header img { height: 34px; }
+  h1 { font-size: clamp(28px, 4.5vw, 44px); margin: 22px 0 8px; letter-spacing: -.5px; }
+  header p { color: var(--muted); max-width: 720px; margin: 0; font-size: 18px; }
+  main { max-width: 1100px; margin: 0 auto; padding: 8px clamp(16px, 5vw, 48px) 56px; display: grid; gap: 40px; }
+  article { background: var(--card); border-radius: 18px; overflow: hidden; border: 1px solid #1d4a72; }
+  video { width: 100%; display: block; background: #000; aspect-ratio: 16 / 9; }
+  .body { padding: 22px clamp(18px, 3vw, 30px) 26px; }
+  .tag { display: inline-block; font-size: 13px; font-weight: 700; color: #062033; background: var(--accent); padding: 3px 10px; border-radius: 999px; }
+  h2 { margin: 12px 0 6px; font-size: clamp(22px, 3vw, 28px); }
+  .lead { color: var(--muted); margin: 0 0 16px; }
+  .chapters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chapters button { font: inherit; font-size: 14px; color: var(--ink); background: #0b2742; border: 1px solid #245a86; border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+  .chapters button:hover, .chapters button:focus-visible { border-color: var(--accent); outline: none; }
+  .chapters b { color: var(--accent); margin-right: 6px; font-variant-numeric: tabular-nums; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 0 16px 40px; }
+</style>
+</head>
+<body>
+<header>
+  <img src="logo-snowflake-corp-rgb_w.svg" alt="Snowflake">
+  <h1>Casos de uso de IA para el negocio</h1>
+  <p>Vídeos cortos del Snowflake IA Day: qué problema resuelve cada caso, cómo se construye con Snowflake y el valor que aporta.</p>
+</header>
+<main>
+  <article>
+    <video controls preload="metadata" poster="videos/pid-ia-diagramas.jpg">
+      <source src="videos/pid-ia-diagramas.mp4" type="video/mp4">
+      <track kind="subtitles" src="videos/pid-ia-diagramas.vtt" srclang="es" label="Español" default>
+    </video>
+    <div class="body">
+      <span class="tag">Industria · Mantenimiento</span>
+      <h2>Tus diagramas P&amp;ID, convertidos en datos que se pueden consultar</h2>
+      <p class="lead">La IA de Snowflake lee los planos de tuberías e instrumentación de tu planta, tu ingeniero valida lo que encuentra y después le preguntas a los datos.</p>
+      <div class="chapters">
+        <button type="button" data-t="0"><b>0:00</b>Diagramas P&amp;ID</button>
+        <button type="button" data-t="36"><b>0:36</b>La idea</button>
+        <button type="button" data-t="47"><b>0:47</b>Leer los planos</button>
+        <button type="button" data-t="69"><b>1:09</b>Cruzar con la lista de materiales</button>
+        <button type="button" data-t="82"><b>1:22</b>El ingeniero valida</button>
+        <button type="button" data-t="96"><b>1:36</b>Preguntar a los datos</button>
+        <button type="button" data-t="109"><b>1:49</b>La IA propone</button>
+        <button type="button" data-t="120"><b>2:00</b>En resumen</button>
+      </div>
+    </div>
+  </article>
+  <article>
+    <video controls preload="metadata" poster="videos/supply-chain-sop.jpg">
+      <source src="videos/supply-chain-sop.mp4" type="video/mp4">
+      <track kind="subtitles" src="videos/supply-chain-sop.vtt" srclang="es" label="Español" default>
+    </video>
+    <div class="body">
+      <span class="tag">Supply chain · S&amp;OP</span>
+      <h2>Cuando algo se rompe en tu red logística, decide con el coste y el servicio delante</h2>
+      <p class="lead">Snowflake propone qué stock mover y cuánto cuesta; tu planificadora decide y la orden vuelve a tu ERP.</p>
+      <div class="chapters">
+        <button type="button" data-t="0"><b>0:00</b>La torre de control</button>
+        <button type="button" data-t="12"><b>0:12</b>La recomendación</button>
+        <button type="button" data-t="27"><b>0:27</b>Revisar y aceptar</button>
+        <button type="button" data-t="38"><b>0:38</b>Cómo se calcula</button>
+        <button type="button" data-t="53"><b>0:53</b>De dónde salen los datos</button>
+        <button type="button" data-t="76"><b>1:16</b>El valor, a la vista</button>
+        <button type="button" data-t="91"><b>1:31</b>Siguiente paso</button>
+      </div>
+    </div>
+  </article>
+</main>
+<footer>Pantallas, etiquetas, importes y datos de ejemplo. Narración con voz sintética (ElevenLabs).</footer>
+<script>
+  document.querySelectorAll('article').forEach(function (a) {
+    var v = a.querySelector('video');
+    a.querySelectorAll('.chapters button').forEach(function (b) {
+      b.addEventListener('click', function () { v.currentTime = +b.dataset.t; v.play(); });
+    });
+  });
+</script>
+</body>
+</html>

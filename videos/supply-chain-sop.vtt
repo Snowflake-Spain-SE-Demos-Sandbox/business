@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.900 --> 00:00:02.400
+Lunes por la mañana.
+
+2
+00:00:02.420 --> 00:00:05.230
+La planificadora abre la torre de control.
+
+3
+00:00:05.730 --> 00:00:08.290
+Un centro de distribución se ha quedado sin capacidad
+
+4
+00:00:08.310 --> 00:00:10.890
+de transporte y hay pedidos que no van a
+
+5
+00:00:10.910 --> 00:00:12.710
+llegar a tiempo.
+
+6
+00:00:13.180 --> 00:00:14.560
+Antes de buscar nada,
+
+7
+00:00:14.580 --> 00:00:17.010
+la torre ya le propone una salida.
+
+8
+00:00:17.040 --> 00:00:20.430
+Una orden de transferencia de stock desde otro centro.
+
+9
+00:00:20.900 --> 00:00:23.000
+Al lado, lo que cuesta en flete,
+
+10
+00:00:23.020 --> 00:00:26.140
+almacenaje y manipulación y el nivel de servicio que
+
+11
+00:00:26.160 --> 00:00:27.960
+protege.
+
+12
+00:00:28.200 --> 00:00:30.340
+Revisa la propuesta en Streamlit,
+
+13
+00:00:30.360 --> 00:00:33.890
+la acepta y la orden vuelve a su ERP.
+
+14
+00:00:34.320 --> 00:00:37.950
+La decisión sigue siendo suya y queda registrada.
+
+15
+00:00:39.140 --> 00:00:43.160
+¿Cómo se calcula? Un modelo de optimización lineal,
+
+16
+00:00:43.180 --> 00:00:46.580
+escrito en Python, se ejecuta dentro de Snowflake con
+
+17
+00:00:46.600 --> 00:00:48.200
+Snowpark.
+
+18
+00:00:48.220 --> 00:00:50.980
+Compara las alternativas y elige la que cumple el
+
+19
+00:00:51.000 --> 00:00:53.110
+servicio al menor coste.
+
+20
+00:00:54.160 --> 00:00:56.500
+Los datos llegan de tu ERP,
+
+21
+00:00:56.520 --> 00:01:00.950
+tu TMS y tu WMS a través de Openflow.
+
+22
+00:01:01.400 --> 00:01:04.260
+Las Dynamic Tables mantienen la red al día,
+
+23
+00:01:04.280 --> 00:01:06.950
+ubicaciones, capacidades y stock.
+
+24
+00:01:07.450 --> 00:01:11.570
+Las funciones geoespaciales calculan distancias entre centros y desde
+
+25
+00:01:11.590 --> 00:01:15.780
+Marketplace sumas datos externos como la meteorología.
+
+26
+00:01:16.980 --> 00:01:19.320
+Cada recomendación deja rastro,
+
+27
+00:01:19.340 --> 00:01:22.480
+qué gasto supone, qué servicio protege y si el
+
+28
+00:01:22.500 --> 00:01:24.280
+equipo la acepta.
+
+29
+00:01:24.300 --> 00:01:26.360
+Así, ante cada imprevisto,
+
+30
+00:01:26.380 --> 00:01:28.340
+la planificadora decide rápido,
+
+31
+00:01:28.360 --> 00:01:30.790
+con el coste y el servicio delante.
+
+32
+00:01:31.920 --> 00:01:34.880
+Empieza con una región y unas pocas rutas,
+
+33
+00:01:34.900 --> 00:01:36.970
+en tu propia cuenta de Snowflake.
