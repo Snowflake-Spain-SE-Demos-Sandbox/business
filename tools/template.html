@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IA con Snowflake · Casos de uso de negocio</title>
+<meta name="description" content="Casos de uso donde Snowflake y la IA aportan valor al negocio, por industria, con vídeos explicativos.">
+<style>
+  :root { color-scheme: light dark;
+    --bg: light-dark(#f4f7fa, #081a2b); --surface: light-dark(#ffffff, #0f2a44); --ink: light-dark(#1b2a4a, #e8f1f8);
+    --muted: light-dark(#5b6b7f, #9fb3c8); --line: light-dark(#dde5ec, #1f4566); --accent: #29b5e8; --deep: #11567f;
+    --chip: light-dark(#e6f4fb, #123a5c); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: -apple-system, system-ui, "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  a { color: light-dark(#0b6fa3, #7dd3fc); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+
+  /* hero */
+  .hero { background: radial-gradient(1100px 420px at 15% -10%, #1d6aa0 0%, #0b1f33 65%); color: #fff; padding: clamp(28px, 6vw, 64px) 0 clamp(28px, 5vw, 52px); }
+  .hero img { height: 34px; }
+  .hero h1 { font-size: clamp(30px, 5vw, 52px); line-height: 1.1; margin: 26px 0 12px; letter-spacing: -.8px; max-width: 860px; }
+  .hero p { color: #c7d9e8; font-size: clamp(16px, 2vw, 19px); max-width: 760px; margin: 0; }
+  .stats { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+  .stat { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: 14px; padding: 12px 18px; min-width: 150px; }
+  .stat b { display: block; font-size: 28px; color: var(--accent); }
+  .stat span { font-size: 14px; color: #c7d9e8; }
+
+  /* featured videos */
+  .featured { padding: 36px 0 8px; }
+  h2 { font-size: clamp(22px, 3vw, 30px); margin: 0 0 6px; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .vcard { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; cursor: pointer; text-align: left; padding: 0; font: inherit; color: inherit; transition: transform .15s, box-shadow .15s; }
+  .vcard:hover, .vcard:focus-visible { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(11,31,51,.18); outline: none; }
+  .vthumb { position: relative; aspect-ratio: 16/9; background: #000 center/cover no-repeat; }
+  .vthumb::after { content: "▶"; position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: rgba(41,181,232,.92); color: #fff; font-size: 24px; padding-left: 4px; }
+  .vdur { position: absolute; right: 10px; bottom: 10px; background: rgba(0,0,0,.7); color: #fff; font-size: 13px; padding: 2px 8px; border-radius: 6px; z-index: 1; }
+  .vbody { padding: 14px 18px 18px; }
+  .vbody h3 { margin: 6px 0 4px; font-size: 18px; }
+  .vbody p { margin: 0; color: var(--muted); font-size: 14px; }
+
+  /* catalogue */
+  .catalogue { padding: 40px 0 60px; }
+  .tools { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 14px 0; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+  .search { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .search input { flex: 1 1 280px; padding: 11px 14px; font: inherit; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); cursor: pointer; user-select: none; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .chip { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+  .chip[aria-pressed="true"] { background: var(--deep); border-color: var(--deep); color: #fff; }
+  .chip b { color: var(--accent); margin-left: 4px; }
+  .chip[aria-pressed="true"] b { color: #bfe9fa; }
+  .count { font-size: 14px; color: var(--muted); margin: 0 0 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; padding: 16px 18px; cursor: pointer; text-align: left; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 8px; transition: box-shadow .15s, transform .15s; }
+  .card:hover, .card:focus-visible { box-shadow: 0 10px 24px rgba(11,31,51,.14); transform: translateY(-2px); outline: none; }
+  .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 6px; background: var(--chip); color: light-dark(#075985, #cdeefc); }
+  .tag.v { background: var(--accent); color: #062033; }
+  .card h3 { margin: 0; font-size: 17px; line-height: 1.3; }
+  .card p { margin: 0; font-size: 14px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .empty { color: var(--muted); padding: 30px 0; text-align: center; }
+
+  /* detail dialog */
+  dialog { border: 0; padding: 0; border-radius: 18px; width: min(980px, 94vw); max-height: 92vh; background: var(--surface); color: var(--ink); box-shadow: 0 30px 80px rgba(0,0,0,.4); }
+  dialog::backdrop { background: rgba(4,14,24,.66); }
+  .dhead { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 20px 24px 14px; background: var(--surface); border-bottom: 1px solid var(--line); z-index: 1; }
+  .dhead h2 { font-size: clamp(20px, 3vw, 26px); margin: 6px 0 0; }
+  .close { font: inherit; font-size: 26px; line-height: 1; border: 0; background: none; color: var(--muted); cursor: pointer; padding: 4px 8px; border-radius: 8px; }
+  .close:hover, .close:focus-visible { color: var(--ink); background: var(--chip); outline: none; }
+  .dbody { padding: 18px 24px 28px; }
+  .dbody video { width: 100%; border-radius: 12px; background: #000; aspect-ratio: 16/9; display: block; }
+  .caps { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  .caps button { font: inherit; font-size: 13px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+  .caps button:hover, .caps button:focus-visible { border-color: var(--accent); outline: none; }
+  .caps b { color: var(--accent); margin-right: 5px; font-variant-numeric: tabular-nums; }
+  .roles { font-size: 14px; color: var(--muted); }
+  .dbody h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 22px 0 6px; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px 24px; }
+  .dbody ul { margin: 0; padding-left: 20px; }
+  .dbody li { margin: 4px 0; }
+  .sf { background: light-dark(#ecf8fe, #0b3352); border-radius: 12px; padding: 4px 18px 12px; margin-top: 22px; }
+  .share { font-size: 13px; color: var(--muted); margin-top: 22px; }
+
+  footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; padding: 24px 0 40px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <img src="logo-snowflake-corp-rgb_w.svg" alt="Snowflake">
+    <h1>IA que aporta valor al negocio, construida con Snowflake</h1>
+    <p>Casos de uso por industria: qué problema resuelve cada uno, el valor que aporta y cómo se construye con Snowflake sobre tus propios datos, sin moverlos a otro sitio.</p>
+    <div class="stats">
+      <div class="stat"><b>{{N_CASES}}</b><span>casos de uso</span></div>
+      <div class="stat"><b>{{N_INDS}}</b><span>industrias</span></div>
+      <div class="stat"><b>{{N_VIDEOS}}</b><span>con vídeo explicativo</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="featured wrap" id="videos">
+    <h2>Casos en vídeo</h2>
+    <p class="sub">Explicaciones cortas de cada caso, paso a paso. Iremos añadiendo más.</p>
+    <div class="vgrid" id="vgrid"></div>
+  </section>
+
+  <section class="catalogue wrap" id="catalogo">
+    <h2>Catálogo de casos de uso</h2>
+    <p class="sub">Filtra por industria o busca por función, perfil o tecnología.</p>
+    <div class="tools">
+      <div class="search">
+        <input id="q" type="search" placeholder="Buscar: mantenimiento, facturas, Cortex Search, compras…" aria-label="Buscar casos de uso">
+        <label class="toggle"><input type="checkbox" id="onlyv"> Solo con vídeo</label>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por industria"></div>
+    </div>
+    <p class="count" id="count" role="status" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<dialog id="dlg" aria-labelledby="dtitle">
+  <div class="dhead">
+    <div><div class="meta" id="dmeta"></div><h2 id="dtitle"></h2></div>
+    <button class="close" id="dclose" type="button" aria-label="Cerrar">×</button>
+  </div>
+  <div class="dbody" id="dbody"></div>
+</dialog>
+
+<footer>
+  <div class="wrap">Casos de uso ilustrativos: describen cómo se puede construir cada solución con Snowflake. Pantallas, etiquetas, importes y datos de los vídeos son de ejemplo. Narración con voz sintética.</div>
+</footer>
+
+<script type="application/json" id="data">{{DATA}}</script>
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var cases = D.cases, bySlug = {};
+  cases.forEach(function (c) { bySlug[c.slug] = c; c._text = [c.titulo, c.industria, c.funcion, c.perfiles, c.explicacion].concat(c.funcionalidades || [], c.valor_negocio || [], c.ideas_snowflake || []).join(' ').toLowerCase(); });
+  var state = { ind: null, q: '', onlyv: false };
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function fmt(s) { return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+  function tags(c, box) {
+    box.appendChild(el('span', 'tag', c.industria));
+    if (c.funcion) box.appendChild(el('span', 'tag', c.funcion));
+    if (c.video) box.appendChild(el('span', 'tag v', '▶ Vídeo'));
+  }
+
+  // featured videos
+  var vg = document.getElementById('vgrid');
+  cases.filter(function (c) { return c.video; }).forEach(function (c) {
+    var b = el('button', 'vcard'); b.type = 'button';
+    var th = el('div', 'vthumb'); th.style.backgroundImage = 'url(videos/' + c.video.file + '.jpg)';
+    th.appendChild(el('span', 'vdur', c.video.duracion || ''));
+    var body = el('div', 'vbody'); var m = el('div', 'meta'); m.appendChild(el('span', 'tag', c.industria)); body.appendChild(m);
+    body.appendChild(el('h3', null, c.video.titulo)); body.appendChild(el('p', null, c.video.resumen));
+    b.appendChild(th); b.appendChild(body);
+    b.addEventListener('click', function () { open(c.slug); });
+    vg.appendChild(b);
+  });
+
+  // industry chips
+  var chips = document.getElementById('chips');
+  function chip(label, val, n) {
+    var b = el('button', 'chip', label); b.type = 'button'; b.setAttribute('aria-pressed', String(state.ind === val));
+    if (n != null) b.appendChild(el('b', null, n));
+    b.addEventListener('click', function () { state.ind = val; render(); });
+    return b;
+  }
+  function renderChips() {
+    chips.innerHTML = '';
+    chips.appendChild(chip('Todas', null, cases.length));
+    D.industries.forEach(function (i) { chips.appendChild(chip(i, i, cases.filter(function (c) { return c.industria === i; }).length)); });
+  }
+
+  // grid
+  var grid = document.getElementById('grid'), count = document.getElementById('count');
+  function render() {
+    renderChips();
+    var q = state.q.trim().toLowerCase();
+    var list = cases.filter(function (c) {
+      return (!state.ind || c.industria === state.ind) && (!state.onlyv || c.video) && (!q || c._text.indexOf(q) >= 0);
+    }).sort(function (a, b) { return (b.video ? 1 : 0) - (a.video ? 1 : 0) || a.titulo.localeCompare(b.titulo, 'es'); });
+    grid.innerHTML = '';
+    list.forEach(function (c) {
+      var b = el('button', 'card'); b.type = 'button';
+      var m = el('div', 'meta'); tags(c, m); b.appendChild(m);
+      b.appendChild(el('h3', null, c.titulo)); b.appendChild(el('p', null, c.explicacion));
+      b.addEventListener('click', function () { open(c.slug); });
+      grid.appendChild(b);
+    });
+    if (!list.length) grid.appendChild(el('p', 'empty', 'Ningún caso coincide con la búsqueda.'));
+    count.textContent = list.length + ' de ' + cases.length + ' casos de uso';
+  }
+  document.getElementById('q').addEventListener('input', function () { state.q = this.value; render(); });
+  document.getElementById('onlyv').addEventListener('change', function () { state.onlyv = this.checked; render(); });
+
+  // detail
+  var dlg = document.getElementById('dlg'), dbody = document.getElementById('dbody');
+  function list(title, items, cls) {
+    var w = el('div', cls); w.appendChild(el('h3', null, title));
+    var ul = el('ul'); (items || []).forEach(function (x) { ul.appendChild(el('li', null, x)); }); w.appendChild(ul); return w;
+  }
+  function open(slug, push) {
+    var c = bySlug[slug]; if (!c) return;
+    document.getElementById('dtitle').textContent = c.titulo;
+    var m = document.getElementById('dmeta'); m.innerHTML = ''; tags(c, m);
+    dbody.innerHTML = '';
+    if (c.video) {
+      var v = document.createElement('video'); v.controls = true; v.preload = 'metadata'; v.poster = 'videos/' + c.video.file + '.jpg';
+      var s = document.createElement('source'); s.src = 'videos/' + c.video.file + '.mp4'; s.type = 'video/mp4'; v.appendChild(s);
+      var t = document.createElement('track'); t.kind = 'subtitles'; t.src = 'videos/' + c.video.file + '.vtt'; t.srclang = 'es'; t.label = 'Español'; t.default = true; v.appendChild(t);
+      dbody.appendChild(v);
+      var caps = el('div', 'caps');
+      (c.video.capitulos || []).forEach(function (cp) {
+        var b = el('button'); b.type = 'button'; b.appendChild(el('b', null, fmt(cp[0]))); b.appendChild(document.createTextNode(cp[1]));
+        b.addEventListener('click', function () { v.currentTime = cp[0]; v.play(); });
+        caps.appendChild(b);
+      });
+      dbody.appendChild(caps);
+    }
+    if (c.perfiles) dbody.appendChild(el('p', 'roles', 'Para: ' + c.perfiles));
+    dbody.appendChild(el('h3', null, 'Qué es'));
+    dbody.appendChild(el('p', null, c.explicacion));
+    var cols = el('div', 'cols');
+    cols.appendChild(list('Qué hace', c.funcionalidades));
+    cols.appendChild(list('Valor para el negocio', c.valor_negocio));
+    dbody.appendChild(cols);
+    dbody.appendChild(list('Cómo se construye con Snowflake', c.ideas_snowflake, 'sf'));
+    var sh = el('p', 'share', 'Enlace directo: '); var a = el('a', null, location.origin + location.pathname + '#' + c.slug); a.href = '#' + c.slug; sh.appendChild(a); dbody.appendChild(sh);
+    if (push !== false && location.hash !== '#' + c.slug) history.pushState(null, '', '#' + c.slug);
+    if (!dlg.open) dlg.showModal();
+    dlg.scrollTop = 0;
+  }
+  function close() { var v = dbody.querySelector('video'); if (v) v.pause(); if (dlg.open) dlg.close(); }
+  document.getElementById('dclose').addEventListener('click', close);
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+  dlg.addEventListener('close', function () { var v = dbody.querySelector('video'); if (v) v.pause(); if (location.hash) history.pushState(null, '', location.pathname); });
+  function fromHash() { var s = decodeURIComponent(location.hash.slice(1)); if (bySlug[s]) open(s, false); else if (dlg.open) dlg.close(); }
+  window.addEventListener('popstate', fromHash);
+
+  render();
+  fromHash();
+})();
+</script>
+</body>
+</html>

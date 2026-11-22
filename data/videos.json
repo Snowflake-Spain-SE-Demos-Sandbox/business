@@ -1,0 +1,16 @@
+{
+ "analisis-de-diagramas-de-tuberias-e-instrumentacion-p-id": {
+  "file": "pid-ia-diagramas",
+  "titulo": "Tus diagramas P&ID, convertidos en datos que se pueden consultar",
+  "resumen": "La IA de Snowflake lee los planos de tuberías e instrumentación de tu planta, tu ingeniero valida lo que encuentra y después le preguntas a los datos.",
+  "duracion": "2:17",
+  "capitulos": [[0, "Diagramas P&ID"], [36, "La idea"], [47, "Leer los planos"], [69, "Cruzar con la lista de materiales"], [82, "El ingeniero valida"], [96, "Preguntar a los datos"], [109, "La IA propone"], [120, "En resumen"]]
+ },
+ "logistica-de-la-cadena-de-suministro": {
+  "file": "supply-chain-sop",
+  "titulo": "Cuando algo se rompe en tu red logística, decide con el coste y el servicio delante",
+  "resumen": "Snowflake propone qué stock mover y cuánto cuesta; tu planificadora decide y la orden vuelve a tu ERP.",
+  "duracion": "1:45",
+  "capitulos": [[0, "La torre de control"], [12, "La recomendación"], [27, "Revisar y aceptar"], [38, "Cómo se calcula"], [53, "De dónde salen los datos"], [76, "El valor, a la vista"], [91, "Siguiente paso"]]
+ }
+}
